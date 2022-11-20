@@ -9,7 +9,7 @@ namespace qwerty
         {
             int amountOfClients;
             Random random = new Random();
-            Queue<string> queue = new Queue<string>();
+            Queue<int> queue = new Queue<int>();
             int totalSum = 0;
 
             Console.Write("Введите количество клиентов\nВвод..");
@@ -17,13 +17,13 @@ namespace qwerty
 
             for (int i = 0; i < amountOfClients; i++)
             {
-                queue.Enqueue(Convert.ToString(random.Next(10000)));
+                queue.Enqueue(random.Next(10000));
                 Console.WriteLine(queue);
             }
 
             while (queue.Count > 0)
             {
-                int client = int.Parse(queue.Dequeue());
+                int client = queue.Dequeue();
 
                 Console.Clear();
                 Console.WriteLine($"Сумма кассы - {totalSum}");
@@ -36,7 +36,6 @@ namespace qwerty
             Console.Clear();
             Console.WriteLine($"Сумма кассы за сегоднящний день - {totalSum}");
         }
-        
         static int EnterInt()
         {
             int digit;
