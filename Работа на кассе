@@ -1,0 +1,56 @@
+using System;
+using System.Collections.Generic;
+
+namespace qwerty
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int amountOfClients;
+            Random random = new Random();
+            Queue<string> queue = new Queue<string>();
+            int totalSum = 0;
+
+            Console.Write("Введите количество клиентов\nВвод..");
+            amountOfClients = EnterInt();
+
+            for (int i = 0; i < amountOfClients; i++)
+            {
+                queue.Enqueue(Convert.ToString(random.Next(10000)));
+                Console.WriteLine(queue);
+            }
+
+            while (queue.Count > 0)
+            {
+                int client = int.Parse(queue.Dequeue());
+
+                Console.Clear();
+                Console.WriteLine($"Сумма кассы - {totalSum}");
+                Console.WriteLine($"\nСумма покупок следующего клиента - {client}");
+                totalSum += client;
+                Console.WriteLine("\nНажмите любую кнопку для перехода к следующему покупателю");
+                Console.ReadKey();
+            }
+
+            Console.Clear();
+            Console.WriteLine($"Сумма кассы за сегоднящний день - {totalSum}");
+        }
+        
+        static int EnterInt()
+        {
+            int digit;
+            bool isInt;
+
+            isInt = int.TryParse(Console.ReadLine(), out digit);
+
+            while (!isInt)
+            {
+                Console.Write("\nВведите корректное число\nВвод...");
+                isInt = int.TryParse(Console.ReadLine(), out digit);
+            }
+
+            return digit;
+        }
+    }
+}
